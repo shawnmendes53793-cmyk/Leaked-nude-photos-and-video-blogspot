@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – VelvetVault</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+  <!-- Login Screen -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        <span class="logo-icon">◆</span>
+        <h1>VelvetVault <span data-i18n="admin_label">Admin</span></h1>
+      </div>
+      <p class="login-subtitle" data-i18n="login_subtitle">Enter admin password to continue</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <input type="password" id="adminPassword" data-i18n-placeholder="password_placeholder" placeholder="Password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="login_btn">Login</button>
+        <p class="login-hint" data-i18n="login_hint">Default password: <code>velvet2026</code></p>
+      </form>
+      <p id="loginError" class="error-msg hidden" data-i18n="login_error">Incorrect password</p>
+      
+      <!-- Language on login too -->
+      <div class="lang-selector login-lang">
+        <select id="langSelectLogin" aria-label="Choose language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="pt">Portuguese</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="ar">Arabic</option>
+          <option value="hi">Hindi</option>
+          <option value="it">Italian</option>
+          <option value="ru">Russian</option>
+          <option value="zh">Chinese</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="tr">Turkish</option>
+          <option value="nl">Dutch</option>
+          <option value="pl">Polish</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="adminDashboard" class="hidden">
+    <header class="header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">◆</span>
+          <span class="logo-text">Velvet<span>Vault</span> <small data-i18n="admin_label">Admin</small></span>
+        </a>
+        <nav class="nav">
+          <a href="index.html" class="nav-link" data-i18n="view_site">View Site</a>
+          <button id="logoutBtn" class="nav-link admin-link" data-i18n="logout">Logout</button>
+          
+          <div class="lang-selector">
+            <select id="langSelect" aria-label="Choose language">
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="pt">Portuguese</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="ar">Arabic</option>
+              <option value="hi">Hindi</option>
+              <option value="it">Italian</option>
+              <option value="ru">Russian</option>
+              <option value="zh">Chinese</option>
+              <option value="ja">Japanese</option>
+              <option value="ko">Korean</option>
+              <option value="tr">Turkish</option>
+              <option value="nl">Dutch</option>
+              <option value="pl">Polish</option>
+            </select>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="container">
+        <div class="admin-header">
+          <h1 data-i18n="content_manager">Content Manager</h1>
+          <p data-i18n="content_manager_desc">Upload photos and videos. Everything you add becomes visible to all visitors instantly.</p>
+        </div>
+
+        <!-- Upload Form -->
+        <div class="upload-card">
+          <h2 data-i18n="upload_new">Upload New Content</h2>
+          <form id="uploadForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="label_title">Title *</label>
+                <input type="text" id="mediaTitle" data-i18n-placeholder="ph_title" placeholder="e.g. Riley Reid – Bedroom Session" required />
+              </div>
+              <div class="form-group">
+                <label data-i18n="label_performer">Performer / Star</label>
+                <input type="text" id="mediaPerformer" data-i18n-placeholder="ph_performer" placeholder="e.g. Riley Reid" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="label_category">Category</label>
+                <select id="mediaCategory">
+                  <option value="blonde" data-i18n="filter_blonde">Blonde</option>
+                  <option value="brunette" data-i18n="filter_brunette">Brunette</option>
+                  <option value="latina" data-i18n="filter_latina">Latina</option>
+                  <option value="asian" data-i18n="filter_asian">Asian</option>
+                  <option value="ebony" data-i18n="filter_ebony">Ebony</option>
+                  <option value="other" data-i18n="filter_other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label data-i18n="label_type">Type *</label>
+                <select id="mediaType" required>
+                  <option value="photo" data-i18n="type_photo">Photo</option>
+                  <option value="video" data-i18n="type_video">Video</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label data-i18n="label_file">Media File *</label>
+              <div class="file-drop" id="fileDrop">
+                <input type="file" id="mediaFile" accept="image/*,video/*" required />
+                <div class="file-drop-text">
+                  <span data-i18n="drop_text">Click or drag photo / video here</span>
+                  <small data-i18n="drop_hint">Images (JPG, PNG, WEBP) or Videos (MP4, WEBM)</small>
+                </div>
+              </div>
+              <div id="filePreview" class="file-preview hidden"></div>
+            </div>
+
+            <div class="form-group">
+              <label data-i18n="label_desc">Description (optional)</label>
+              <textarea id="mediaDesc" rows="3" data-i18n-placeholder="ph_desc" placeholder="Short description..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" data-i18n="upload_btn">Upload & Publish</button>
+          </form>
+        </div>
+
+        <!-- Existing Content -->
+        <div class="content-manager">
+          <div class="content-header">
+            <h2 data-i18n="published_content">Published Content</h2>
+            <div class="content-stats">
+              <span id="adminPhotoCount">0</span> <span data-i18n="stat_photos_lower">photos</span> · <span id="adminVideoCount">0</span> <span data-i18n="stat_videos_lower">videos</span>
+            </div>
+          </div>
+          <div class="admin-grid" id="adminGrid">
+            <!-- Items injected by JS -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initAdmin === 'function') initAdmin();
+    });
+  </script>
+</body>
+</html>
